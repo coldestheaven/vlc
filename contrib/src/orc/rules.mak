@@ -1,18 +1,18 @@
 # orc
 
-ORC_VERSION := 0.4.40
-ORC_URL := https://gitlab.freedesktop.org/gstreamer/orc/-/archive/$(ORC_VERSION)/orc-$(ORC_VERSION).tar.bz2
+ORC_VERSION := 0.4.18
+ORC_URL := https://gitlab.freedesktop.org/gstreamer/orc/-/archive/$(ORC_VERSION)/orc-$(ORC_VERSION).tar.gz
 
 ifeq ($(call need_pkg,"orc-0.4"),)
 PKGS_FOUND += orc
 endif
 
-$(TARBALLS)/orc-$(ORC_VERSION).tar.bz2:
+$(TARBALLS)/orc-$(ORC_VERSION).tar.gz:
 	$(call download_pkg,$(ORC_URL),orc)
 
-.sum-orc: orc-$(ORC_VERSION).tar.bz2
+.sum-orc: orc-$(ORC_VERSION).tar.gz
 
-orc: orc-$(ORC_VERSION).tar.bz2 .sum-orc
+orc: orc-$(ORC_VERSION).tar.gz .sum-orc
 	$(UNPACK)
 	$(MOVE)
 
