@@ -338,6 +338,9 @@ static void on_process(void *data)
      * assume that the capture delay is no less than zero.
      */
     vlc_tick_t pts = (val != VLC_TICK_INVALID) ? val : now;
+
+    msg_Dbg(demux,"[vlc] on_process:pts => %ld",pts);
+
     es_out_SetPCR(demux->out, pts);
     if (unlikely(sys->es == NULL))
         goto end;

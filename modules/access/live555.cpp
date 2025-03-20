@@ -1984,7 +1984,7 @@ static void StreamRead( void *p_private, unsigned int i_size,
     demux_sys_t *p_sys = (demux_sys_t *)p_demux->p_sys;
     block_t        *p_block;
 
-    msg_Dbg( p_demux, "[kuangyi] pts: %ld", pts.tv_sec );
+    // msg_Dbg( p_demux, "pts: %ld", pts.tv_sec );
 
     vlc_tick_t i_pts = vlc_tick_from_timeval( &pts );
 
