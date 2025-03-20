@@ -184,7 +184,6 @@ static void *Thread (void *data)
 
         frames = snd_pcm_readi (pcm, block->p_buffer, sys->period_size);
         pts = vlc_tick_now ();
-        msg_Dbg(demux,"[vlc] pts => %ld",pts);
         if (frames < 0)
         {
             block_Release (block);

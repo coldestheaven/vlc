@@ -161,9 +161,6 @@ static void stream_read_cb(pa_stream *s, size_t length, void *userdata)
     }
 
     vlc_tick_t pts = vlc_tick_now();
-
-    msg_Dbg(demux,"[vlc] stream_read_cb pts => %ld",pts);
-
     pa_usec_t latency;
     int negative;
 
