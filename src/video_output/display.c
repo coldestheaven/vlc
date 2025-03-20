@@ -847,16 +847,20 @@ vout_display_t *vout_display_New(vlc_object_t *parent,
         vout_display_open_cb cb = vlc_module_map(vlc_object_logger(vd),
                                                  mods[i]);
         if (cb == NULL)
+        { 
+            msg_Dbg(vd, "[vlc] ==> cd == NULL");
             continue;
-
+        }
         /* Picture buffer does not have the concept of aspect ratio */
         video_format_Copy(&osys->display_fmt, vd->source);
         vd->obj.force = i < (ssize_t)strict; /* TODO: pass to cb() instead? */
 
         int ret = cb(vd, &osys->display_fmt, vctx);
-        if (ret == VLC_SUCCESS) {
+        if (ret == VLC_SUCCESS) 
+        {
             assert(vd->ops->prepare != NULL || vd->ops->display != NULL);
-            if (VoutDisplayCreateRender(vd) == 0) {
+            if (VoutDisplayCreateRender(vd) == 0) 
+            {
                 msg_Dbg(vd, "using %s module \"%s\"", "vout display",
                         module_get_object(mods[i]));
                 free(mods);
@@ -865,6 +869,10 @@ vout_display_t *vout_display_New(vlc_object_t *parent,
 
             if (vd->ops->close != NULL)
                 vd->ops->close(vd);
+        }
+        else
+        {
+             msg_Dbg(vd, "[vlc] ==> ret != VLC_SUCCESS %d",ret);
         }
 
         vlc_objres_clear(VLC_OBJECT(vd));
