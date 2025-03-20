@@ -856,7 +856,7 @@ vout_display_t *vout_display_New(vlc_object_t *parent,
         vd->obj.force = i < (ssize_t)strict; /* TODO: pass to cb() instead? */
 
         int ret = cb(vd, &osys->display_fmt, vctx);
-        if (ret == VLC_SUCCESS || true) 
+        if (ret == VLC_SUCCESS) 
         {
             assert(vd->ops->prepare != NULL || vd->ops->display != NULL);
             if (VoutDisplayCreateRender(vd) == 0) 
