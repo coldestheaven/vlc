@@ -166,6 +166,8 @@ static int Send( sout_stream_t *p_stream, void *id, vlc_frame_t *frames )
 
         frames->p_next = NULL;
 
+        msg_Dbg(p_stream,"[vlc] display === SEND() pts:%lld",frames->i_pts);
+
         if( id != NULL && frames->i_buffer > 0 )
             vlc_input_decoder_Decode( id_sys->dec, frames, false );
 
@@ -203,6 +205,8 @@ static void SetPCR( sout_stream_t *p_stream, vlc_tick_t pcr )
 
     if( sys->first_pcr_signaled )
         return;
+
+    msg_Dbg(p_stream,"[vlc] SetPCR %lld",pcr);
 
     sout_ClockMainSetFirstPcr( sys->main_clock, pcr );
     sys->first_pcr_signaled = true;
