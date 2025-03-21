@@ -569,7 +569,7 @@ static void *Thread( void *p_data )
             drawBars(p_filter, height);
         vt->PopMatrix();
 
-        msg_Dbg(p_filter,"[vlc] block->i_pts=>%ld",block->i_pts);
+        msg_Dbg(p_filter,"[vlc] block->i_pts=>%lld",block->i_pts);
         /* Wait to swapp the frame on time. */
         vlc_tick_wait(block->i_pts + (block->i_length / 2));
         vlc_gl_Swap(gl);
