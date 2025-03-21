@@ -1991,7 +1991,7 @@ static void StreamRead( void *p_private, unsigned int i_size,
     /* XXX Beurk beurk beurk Avoid having negative value XXX */
     i_pts &= INT64_C(0x00ffffffffffffff);
 
-    msg_Dbg( p_demux, "[vlc] StreamRead() i_pts: %ld", i_pts );
+    msg_Dbg( p_demux, "[vlc] StreamRead() i_pts: %lld", i_pts );
 
     /* Retrieve NPT for this pts */
     tk->f_npt = tk->sub->getNormalPlayTime(pts);
