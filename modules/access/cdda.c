@@ -189,6 +189,8 @@ static int Demux(demux_t *demux)
     block->i_dts = block->i_pts = date_Get(&sys->pts);
     date_Increment(&sys->pts, count);
 
+    msg_Dbg(Dump,"[vlc] Demux() pts=>%ld",&sys->pts);
+
     es_out_Send(demux->out, sys->es, block);
     es_out_SetPCR(demux->out, date_Get(&sys->pts));
     return VLC_DEMUXER_SUCCESS;

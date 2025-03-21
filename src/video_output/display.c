@@ -802,7 +802,8 @@ vout_display_t *vout_display_New(vlc_object_t *parent,
 
     osys->cfg = *cfg;
 
-    if (cfg->display.width == 0 || cfg->display.height == 0) {
+    if (cfg->display.width == 0 || cfg->display.height == 0) 
+    {
         /* Work around buggy window provider */
         msg_Warn(parent, "window size missing");
         vout_display_GetDefaultDisplaySize(&osys->cfg.display.width,
@@ -818,6 +819,7 @@ vout_display_t *vout_display_New(vlc_object_t *parent,
     osys->src_vctx = vctx ? vlc_video_context_Hold( vctx ) : NULL;
 
     osys->cfg.stereo_mode = cfg->stereo_mode;
+
 
     /* */
     vout_display_t *vd = &osys->display;
@@ -840,8 +842,7 @@ vout_display_t *vout_display_New(vlc_object_t *parent,
     size_t strict;
     ssize_t n = vlc_module_match("vout display", module, true, &mods, &strict);
 
-    msg_Dbg(vd, "looking for %s module matching \"%s\": %zd candidates",
-            "vout display", module, n);
+    msg_Dbg(vd, "looking for %s module matching \"%s\": %zd candidates", "vout display", module, n);
 
     for (ssize_t i = 0; i < n; i++) 
     {

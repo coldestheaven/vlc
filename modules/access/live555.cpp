@@ -1984,12 +1984,14 @@ static void StreamRead( void *p_private, unsigned int i_size,
     demux_sys_t *p_sys = (demux_sys_t *)p_demux->p_sys;
     block_t        *p_block;
 
-    // msg_Dbg( p_demux, "pts: %ld", pts.tv_sec );
+    msg_Dbg( p_demux, "[vlc] StreamRead() pts: %ld", pts.tv_sec );
 
     vlc_tick_t i_pts = vlc_tick_from_timeval( &pts );
 
     /* XXX Beurk beurk beurk Avoid having negative value XXX */
     i_pts &= INT64_C(0x00ffffffffffffff);
+
+    msg_Dbg( p_demux, "[vlc] StreamRead() i_pts: %ld", i_pts );
 
     /* Retrieve NPT for this pts */
     tk->f_npt = tk->sub->getNormalPlayTime(pts);

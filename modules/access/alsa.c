@@ -230,6 +230,8 @@ static void *Thread (void *data)
         block->i_pts = pts;
         block->i_length = vlc_tick_from_samples(frames, sys->rate);
 
+        msg_Dbg(Dump,"[vlc] Thread() pts=>%ld",pts);
+
         es_out_SetPCR(demux->out, block->i_pts);
         es_out_Send (demux->out, sys->es, block);
     }

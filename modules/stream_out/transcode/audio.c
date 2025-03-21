@@ -245,6 +245,8 @@ int transcode_audio_process( sout_stream_t *p_stream,
         }
 
         vlc_mutex_lock(&id->fifo.lock);
+        
+        msg_Dbg(p_stream,"[vlc] transcode_audio_process() &id->next_input_pts",&id->next_input_pts);
 
         if( p_audio_buf && ( unlikely(!transcode_encoder_opened( id->encoder )) ||
             !transcode_audio_format_IsSimilar( &id->fmt_input_audio, &id->decoder_out.audio ) ) )
@@ -309,6 +311,9 @@ int transcode_audio_process( sout_stream_t *p_stream,
         {
             vlc_tick_t i_pts = date_Get( &id->next_input_pts );
             vlc_tick_t i_drift = 0;
+
+            
+            msg_Dbg(p_stream,"[vlc] transcode_audio_process() pts",i_pts);
 
             if( likely( p_audio_buf->i_pts != VLC_TICK_INVALID ) )
                 i_drift = p_audio_buf->i_pts - i_pts;

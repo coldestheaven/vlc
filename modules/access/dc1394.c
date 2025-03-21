@@ -453,6 +453,9 @@ static block_t *GrabVideo( demux_t *p_demux )
             p_sys->width * p_sys->height * 2 );
 
     p_block->i_pts = p_block->i_dts = vlc_tick_now();
+
+    msg_Dbg(p_demux,"[vlc] GrabVideo() pts=>%ld",p_block->i_pts)
+
     dc1394_capture_enqueue( p_sys->camera, p_sys->frame );
     return p_block;
 }

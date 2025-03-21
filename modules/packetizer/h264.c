@@ -893,6 +893,8 @@ static block_t *OutputPicture( decoder_t *p_dec )
     p_pic->i_dts = p_sys->i_frame_dts;
     p_pic->i_pts = p_sys->i_frame_pts;
 
+    msg_Dbg(p_dec,"[vlc] OutputPicture() pts=>%ld",p_sys->i_frame_pts);
+
     /* Fixup missing timestamps after split (multiple AU/block)*/
     if( p_pic->i_dts == VLC_TICK_INVALID )
         p_pic->i_dts = date_Get( &p_sys->dts );
